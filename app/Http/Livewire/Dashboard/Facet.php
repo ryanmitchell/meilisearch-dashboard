@@ -14,7 +14,7 @@ class Facet extends Component
 
     public function get()
     {
-        return $this->index()->getAttributesForFaceting();
+        return $this->index()->getFilterableAttributes();
     }
 
     public function add()
@@ -22,7 +22,7 @@ class Facet extends Component
         $this->validate(['attribute' => 'required']);
 
         $attributes = [...$this->get(), $this->attribute];
-        $status = $this->index()->updateAttributesForFaceting($attributes);
+        $status = $this->index()->updateFilterableAttributes($attributes);
         $this->waitUpdate($status);
         $this->reset('attribute');
     }
@@ -32,7 +32,7 @@ class Facet extends Component
         $attributes = $this->get();
         unset($attributes[$id]);
 
-        $status = $this->index()->updateAttributesForFaceting(array_values($attributes));
+        $status = $this->index()->updateFilterableAttributes(array_values($attributes));
         $this->waitUpdate($status);
     }
 

@@ -20,7 +20,7 @@ class Stats extends Component
     public function render()
     {
         $stats = $this->index()->stats();
-        $distribution = Arr::sortRecursive($stats['fieldsDistribution']);
+        $distribution = Arr::sortRecursive($stats['fieldDistribution']);
 
         return view('livewire.dashboard.stats', ['stats' => $stats, 'distribution' => $distribution])
             ->extends('layouts.panel')

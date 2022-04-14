@@ -33,7 +33,7 @@ class Indexes extends Component
         $indexes = collect(Meili::getAllIndexes())->map(function (\MeiliSearch\Endpoints\Indexes $index) {
             $stats = Meili::getIndex($index->getUid())->stats();
 
-            return array_merge($index->show(), $stats);
+            return array_merge(['uid' => $index->getUid()], $stats);
         })->all();
 
         return view('livewire.indexes', ['indexes' => $indexes])->extends('layouts.app');
